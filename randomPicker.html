@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>随机点名器</title>
+  <style>
+    body { font-family: Arial, sans-serif; text-align: center; margin-top: 50px; }
+    input { width: 300px; padding: 8px; }
+    button { padding: 8px 16px; margin-left: 10px; }
+    #result { margin-top: 20px; font-size: 24px; color: #d9534f; }
+  </style>
+</head>
+<body>
+  <h1>随机点名器</h1>
+  <p>请输入姓名，用逗号分隔（例如：张三, 李四, 王五）：</p>
+  <input type="text" id="names" placeholder="张三, 李四, 王五">
+  <button onclick="pickName()">点名</button>
+  <div id="result"></div>
+
+  <script>
+    function pickName(){
+      var namesInput = document.getElementById("names").value;
+      var names = namesInput.split(",").map(function(name){ return name.trim(); }).filter(function(name){ return name !== ""; });
+      if(names.length === 0){
+        document.getElementById("result").innerText = "请至少输入一个姓名。";
+        return;
+      }
+      var randomIndex = Math.floor(Math.random() * names.length);
+      var chosen = names[randomIndex];
+      document.getElementById("result").innerText = "点到的是：" + chosen;
+    }
+  </script>
+</body>
+</html>
